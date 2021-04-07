@@ -1829,13 +1829,23 @@ void get_options_page(unsigned int start, unsigned int len) {
   page += F("<div class='w-50'>");
   page += F("<div class='form-floating'>");
   page += F("<select class='form-select' id='wifissid' name='wifiSSID'>");
-  for (int i = 0; i < networks; i++) {
-    page += F("<option value='");
-    page += WiFi.SSID(i) + F("'");
-    if (wifiSSID == WiFi.SSID(i)) page += F(" selected");
-    page += F(">");
-    page += WiFi.SSID(i) + F("</option>");
-  }
+  // for (int i = 0; i < networks; i++) {
+  //   page += F("<option value='");
+  //   page += WiFi.SSID(i) + F("'");
+  //   if (wifiSSID == WiFi.SSID(i)) page += F(" selected");
+  //   page += F(">");
+  //   page += WiFi.SSID(i) + F("</option>");
+  // }
+
+  page += F("<option value='");
+  page += F("");
+  page += F("'");
+  page += F(" selected");
+  page += F(">");
+  page += F("");
+  page += F("</option>");
+
+
   page += F("</select>");
   page += F("<label for='wifissid'>SSID</label>");
   page += F("</div>");
@@ -2939,7 +2949,8 @@ void http_handle_sequences(AsyncWebServerRequest *request) {
 void http_handle_options(AsyncWebServerRequest *request) {
   if (!httpUsername.isEmpty() && !request->authenticate(httpUsername.c_str(), httpPassword.c_str())) return request->requestAuthentication();
   http_handle_globals(request);
-  networks = WiFi.scanNetworks();
+  networks = 0;
+  //networks = WiFi.scanNetworks();
   AsyncWebServerResponse *response = request->beginChunkedResponse("text/html", get_options_page_chunked);
   response->addHeader("Connection", "close");
   request->send(response);

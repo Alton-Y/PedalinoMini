@@ -39,8 +39,8 @@ SH1106Wire                display(OLED_I2C_ADDRESS, OLED_I2C_SDA, OLED_I2C_SCL);
 #include <SSD1306Wire.h>
 #include <OLEDDisplayUi.h>
 #define OLED_I2C_ADDRESS  0x3c
-#define OLED_I2C_SDA      SDA
-#define OLED_I2C_SCL      SCL
+#define OLED_I2C_SDA      23 //SDA
+#define OLED_I2C_SCL      22 //SCL
 SSD1306Wire               display(OLED_I2C_ADDRESS, OLED_I2C_SDA, OLED_I2C_SCL);
 #endif
 
